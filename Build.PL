@@ -3,7 +3,7 @@ use lib './mylib';
 use Module::Build::Yapp;
 my $build = Module::Build::Yapp->new(
 	module_name        => 'Config::Irssi::Parser',
-	dist_version       => '0.0.3',
+	dist_version       => '0.0.4',
 	dist_author        => 'Dylan William Hardison <dhardison@cpan.org>',
 	dist_abstract      => 'Read Irssi-style config files',
 	license            => 'perl',

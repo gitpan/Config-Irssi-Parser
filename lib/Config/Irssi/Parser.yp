@@ -6,6 +6,9 @@
 # This file is PUBLIC DOMAIN 
 #
 #
+%{
+use Config::Irssi::Lexer;
+%}
 %right ','
 %%
 input:  #empty
@@ -58,66 +61,17 @@ sub error {
 		val => scalar $me->YYCurval,
 		tok => scalar $me->YYCurtok,
 		expect => [$me->YYExpect],
-		line  => $me->YYData->{line},
+		line  => $.,
 	};
 
 	return;
 }
 
-sub _lexer {
-	my ($me) = @_;
-	my ($tok, $val) = $me->_lexer;
-	if ($tok and $val) {
-		if ($tok ne $val) {
-			print "# $tok ($val)\n";
-		} else {
-			print "# $tok\n";
-		}
-	}
-	return ($tok, $val);
-}
-
-sub lexer {
-    my ($parser) = shift;
-	local $/ = undef;
-
-
-	unless ($parser->YYData->{INPUT}) {
-		my $fh = $parser->YYData->{fh};
-		my $s = <$fh>;
-		return ('', undef) if not defined $s;
-		$s =~ s/^\s*#\s*.+?$//mg;
-		$parser->YYData->{INPUT} = $s;
-	}
-
-
-    for ($parser->YYData->{INPUT}) {
-		s/^([ \t\n]+)//;
-        s/^([0-9]+(?:\.[0-9]+)?)//
-                and return('NUMBER',$1);
-        s/^([A-Za-z][A-Za-z0-9_]*)//
-                and return('SYMBOL',$1);
-
-		if (s/^(["'])((?:\\.|(?!\1)[^\\])*)\1//) {
-			my $s = $2;
-			my $q = $1;
-			$s =~ s/\\$q/$q/g;
-			$s =~ s/\\\\/\\/g;
-			return (STRING => $s);
-		}
-		
-        s/^\s*(.)//s
-                and return($1,$1);
-    }
-}
-
-
-
 sub parse {
     my ($self, $fh) = @_;
 	
 	$self->YYData->{fh} = $fh;
-    $self->YYParse( yylex => \&lexer, yyerror => \&error );
+    $self->YYParse( yylex => mklexer($fh), yyerror => \&error );
 
 	if ($self->YYData->{return}) {
 		return $self->YYData->{return};
