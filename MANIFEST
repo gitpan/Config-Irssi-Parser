@@ -1,0 +1,11 @@
+Build.PL
+lib/Config/Irssi/Parser.pm
+lib/Config/Irssi/Parser.pod
+lib/Config/Irssi/Parser.yp
+Makefile.PL
+MANIFEST			This list of files
+MANIFEST.SKIP
+META.yml
+mylib/Module/Build/Yapp.pm
+t/config
+t/parse.t
