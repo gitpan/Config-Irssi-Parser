@@ -53,5 +53,8 @@ Dylan William Hardison E<lt>dhardison@cpan.orgE<gt>
 
 Copyright (C) 2004 by Dylan William Hardison
 
-This program is free software; you can redistribute it and/or modify it under the
+This module is free software; you can redistribute it and/or modify it under the
 same terms as Perl itself.
+
+This module contains code copyright (C) 1998-2001 by Francois Desarmenien,
+which is licensed under either the perl artistic licence or the GPL.

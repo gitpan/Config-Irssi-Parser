@@ -1,10 +1,11 @@
 --- #YAML:1.0
 name: Config-Irssi-Parser
-version: 0.0.2
+version: 0.0.3
 author: Dylan William Hardison <dhardison@cpan.org>
 abstract: Read Irssi-style config files
 license: perl
 requires:
+  Test::More: 0.47
   perl: 5.8.0
 provides:
   Config::Irssi::Parser:

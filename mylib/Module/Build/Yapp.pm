@@ -38,6 +38,7 @@ sub ACTION_code {
 
 			if (not $me->up_to_date($file, $modfile)) {
 				$me->do_system('yapp',
+					'-s', # stand alone now.
 					'-m' => $modname,
 					'-o' => $modfile, $file);
 			}

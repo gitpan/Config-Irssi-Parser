@@ -1,0 +1,6 @@
+2004-09-19  Dylan Hardison <dylanwh@tampabay.rr.com>
+
+	* mylib/Module/Build/Yapp.pm: call yapp with the -s option now, thus
+	Parse::Yapp::Driver is no longer required.
+	* Build.PL: list Test::More as a dependency now,
+	and increment the version number.	
